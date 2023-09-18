@@ -28,7 +28,7 @@ pipeline {
                 sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
            //     sh ('terraform init')
             }
-        } */
+        } 
         stage('Approval') {
            when {
                not {
@@ -49,7 +49,15 @@ pipeline {
             steps {
                 sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
             }
-        } 
+        } */
+        stage('Plan') {
+    steps {
+        script {
+            def tfplanPath = "${WORKSPACE}/terraform/tfplan.txt"
+            sh "terraform show -no-color tfplan > ${tfplanPath}"
+        }
+    }
+}
     } 
 
   }
