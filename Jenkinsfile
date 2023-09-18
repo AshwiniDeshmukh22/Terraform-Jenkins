@@ -13,7 +13,7 @@ pipeline {
         stage('checkout') {
             steps {
                  script{
-                        dir('terraform')
+                        dir("terraform")
                         {
                             git branch: 'main', url: "https://github.com/AshwiniDeshmukh22/Terraform-Jenkins.git"
                         }
@@ -26,9 +26,8 @@ pipeline {
                 sh 'pwd;cd terraform/ ; terraform init'
                 sh "pwd;cd terraform/ ; terraform plan -out tfplan"
                 sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
-           //     sh ('terraform init')
             }
-        } 
+        }
         stage('Approval') {
            when {
                not {
@@ -49,7 +48,7 @@ pipeline {
             steps {
                 sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
             }
-        } 
-    } 
+        }
+    }
 
   }
