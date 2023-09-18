@@ -1,4 +1,4 @@
-/* pipeline {
+pipeline {
 
     parameters {
         booleanParam(name: 'autoApprove', defaultValue: false, description: 'Automatically run apply after generating plan?')
@@ -13,7 +13,7 @@
         stage('checkout') {
             steps {
                  script{
-                        dir("terraform")
+                        dir('terraform')
                         {
                             git branch: 'main', url: "https://github.com/AshwiniDeshmukh22/Terraform-Jenkins.git"
                         }
@@ -52,52 +52,4 @@
         } 
     } 
 
-  } */
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Initialize') {
-            steps {
-                script {
-                    // Change to your Terraform configuration directory
-                    dir('Terraform') {
-                        // Run terraform init
-                        sh 'terraform init'
-                    }
-                }
-            }
-        }
-
-        stage('Plan') {
-            steps {
-                script {
-                    dir('Terraform') {
-                        // Run terraform plan
-                        sh 'terraform plan -out=tfplan'
-                    }
-                }
-            }
-        }
-
-        stage('Apply') {
-            steps {
-                script {
-                    dir('Terraform') {
-                        // Run terraform apply
-                        sh 'terraform apply -auto-approve tfplan'
-                    }
-                }
-            }
-        }
-    }
-
-    post {
-        always {
-            // Clean up the plan file after apply
-            deleteDir()
-        }
-    }
-}
-
+  }
