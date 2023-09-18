@@ -21,7 +21,7 @@ pipeline {
                 }
             }
 
-   /*     stage('Plan') {
+        stage('Plan') {
             steps {
                 sh 'pwd;cd terraform/ ; terraform init'
                 sh "pwd;cd terraform/ ; terraform plan -out tfplan"
@@ -49,15 +49,7 @@ pipeline {
             steps {
                 sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
             }
-        } */
-        stage('Plan') {
-    steps {
-        script {
-            def tfplanPath = "${WORKSPACE}/terraform/tfplan.txt"
-            sh "terraform show -no-color tfplan > ${tfplanPath}"
-        }
-    }
-}
+        } 
     } 
 
   }
