@@ -44,10 +44,16 @@ pipeline {
            }
        }
 
-        stage('Apply') {
+     /*   stage('Apply') {
             steps {
                 sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
-            }
+            } */
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    dir('terraform') {
+                        sh 'terraform apply -auto-approve tfplan'
+                    }
         }
     }
 
