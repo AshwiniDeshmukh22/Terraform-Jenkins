@@ -45,4 +45,7 @@ resource "aws_route_table" "PublicRT"{
         cidr_block = "0.0.0.0/0"
         gateway_id = aws_internet_gateway.myIgw.id
     }
+    tags = {
+        Name = "MyRT"
+    }
 }
