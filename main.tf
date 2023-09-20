@@ -8,6 +8,7 @@ resource "aws_instance" "foo" {
   tags = {
       Name = "TF-Instance"
   }
+}
 #Create a VPC
 resource "aws_vpc" "myvpc"{
     cidr_block = "10.0.0.0/16"
@@ -52,4 +53,4 @@ resource "aws_route_table_association" "PublicRTAssociation"{
     route_table_id = aws_route_table.PublicRT.id
 }
 
-}
+
