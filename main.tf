@@ -26,3 +26,6 @@ resource "aws_subnet" "PrivSubnet"{
     map_public_ip_on_launch = true
 
 }
+resource "aws_internet_gateway" "myIgw"{
+    vpc_id = aws_vpc.myvpc.id
+}
